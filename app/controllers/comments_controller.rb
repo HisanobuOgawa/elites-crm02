@@ -12,13 +12,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-       @comment = Comment.new(comment_params)
-        if @comment.save
+      @comment = Comment.new(comment_params)
+      　if @comment.save
            redirect_to customer_path(@comment.customer_id)
-        else
+      　else
           　@customer = Customer.find(@comment.customer_id)
       　　　　render template: "customers/show"
-        end
+      　end
         
   end
 
