@@ -22,7 +22,6 @@ class CustomersController < ApplicationController
     end
 
   end
-
   def edit
     
   end
