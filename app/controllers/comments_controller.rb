@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
            redirect_to customer_path(@comment.customer_id)
       　else
           　@customer = Customer.find(@comment.customer_id)
+          　@comments = @customer.comments
       　　　　render template: "customers/show"
       　end
         
