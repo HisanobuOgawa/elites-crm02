@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
       　if @comment.save
            redirect_to customer_path(@comment.customer_id)
       　else
+      　     @user = current_user.id
           　@customer = Customer.find(@comment.customer_id)
           　@comments = @customer.comments
       　　　　render template: "customers/show"
@@ -41,7 +42,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :customer_id)
+    params.require(:comment).permit(:body, :customer_id, :user_id)
   end
   
 end

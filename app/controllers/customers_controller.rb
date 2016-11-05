@@ -1,9 +1,10 @@
 class CustomersController < ApplicationController
   
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  #ログインしたユーザーのみがシステムを使用可能に設定
+  before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :set_customers,only:[:edit, :update, :show, :destroy]
   
-  
+
   def index
     @q = Customer.search(params[:q])
     @customers = @q.result(distinct: true).page(params[:page])
