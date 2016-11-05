@@ -1,6 +1,8 @@
 class CustomersController < ApplicationController
   
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_customers,only:[:edit, :update, :show, :destroy]
+  
   
   def index
     @q = Customer.search(params[:q])
@@ -20,9 +22,8 @@ class CustomersController < ApplicationController
     end
 
   end
-
   def edit
-    @customer = Customer.find(params[:id])
+    
   end
 
   def update
@@ -35,15 +36,17 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
     @comment = Comment.new
     @comments = @customer.comments
   end
 
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
     redirect_to root_path
+  end
+  
+  def set_customers
+    @customer = Customer.find(params[:id])
   end
   
   private
